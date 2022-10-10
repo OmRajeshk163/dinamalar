@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Dinamalar</title>
+        <title>Dinamalar | An Indian Tamil daily newspaper.</title>
         <meta
           name="description"
           content="Dinamalar is an Indian Tamil daily newspaper."
