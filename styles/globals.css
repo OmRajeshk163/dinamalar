@@ -24,3 +24,13 @@ a {
     background: black;
   } */
 }
+
+/* Slick Css */
+.slick-next {
+  right: -10px;
+}
+.slick-prev {
+  left: -10px;
+  z-index: 2;
+}
+/* Slick Css */

@@ -1,0 +1,81 @@
+.audioPlayer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #212527;
+  flex-direction: column;
+  height: 22rem;
+}
+
+.songContainer {
+  user-select: none;
+  margin: 0 20px;
+}
+.songTitle {
+  text-align: left;
+  margin: 0;
+  color: white;
+  font-family: "Permanent Marker", cursive;
+  font-weight: normal;
+  font-size: 3.5em;
+}
+.songTitle:hover {
+  color: greenyellow;
+}
+.songArtist {
+  margin: 0;
+  color: white;
+  font-family: "Rock Salt", cursive;
+  font-weight: normal;
+  font-size: 1em;
+}
+.songArtist:hover {
+  color: greenyellow;
+  cursor: pointer;
+}
+.audioControls {
+  flex-grow: 1;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.playerButton {
+  width: fit-content;
+  margin-bottom: 15px;
+  background-color: transparent;
+  border: none;
+}
+.playerButton:focus {
+  outline: none;
+}
+.playerButton:hover {
+  cursor: pointer;
+}
+.playerButton:hover svg {
+  color: greenyellow;
+}
+.playerButton svg {
+  font-size: 4em;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .audioPlayer {
+    flex-direction: column;
+  }
+  .audioControls {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .songTitle {
+    font-size: 2.5em;
+  }
+  .songArtist {
+    font-size: 0.8em;
+  }
+}
