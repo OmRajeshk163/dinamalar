@@ -5,6 +5,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import ImageCard from "../../elements/imageCard";
 import Video from "../../elements/Video.js";
+import SampleVideo from "../../elements/Video.js/SampleVideo";
+import Audio from "../../elements/audio";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function FeedList() {
   return (
-    <Box sx={{ flexGrow: 1, width: "100%" }}>
+    <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4} lg={4}>
           <Item>
@@ -68,13 +70,17 @@ export default function FeedList() {
             />
           </Item>
         </Grid>
-
         <Grid item xs={12} md={4} lg={4}>
           <Item>
             <Video
-              category="India"
+              category="World"
               videoTitle="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
             />
+          </Item>
+        </Grid>
+        <Grid item xs={12} md={4} lg={4}>
+          <Item>
+            <Audio />
           </Item>
         </Grid>
       </Grid>

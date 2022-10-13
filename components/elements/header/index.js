@@ -41,7 +41,7 @@ const Header = (props) => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background: "#425F57" }}>
+      <AppBar position="fixed" sx={{ background: "#425F57", p: 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <NewspaperIcon

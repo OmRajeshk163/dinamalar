@@ -8,10 +8,26 @@ import CommentIcon from "@mui/icons-material/Comment";
 
 const ImageCard = (props) => {
   const { src, alt, imgTitle = "", category = "" } = props;
+
+  const myLoader = () => {
+    return src;
+  };
+
   return (
     <Box className={styles.imgContainer}>
       <ImageListItem>
         <div className={styles.imageWrap}>
+          <Image
+            loader={myLoader}
+            alt={alt}
+            src={src}
+            layout="fill"
+            objectFit="contain"
+            className={styles.image}
+          />
+        </div>
+
+        {/* <div className={styles.imageWrap}>
           <img
             src={src}
             // srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
@@ -19,7 +35,7 @@ const ImageCard = (props) => {
             loading="lazy"
             className={styles.image}
           />
-        </div>
+        </div> */}
         <Typography align="left" variant="body2" className={styles.imgTitle}>
           {imgTitle}
         </Typography>

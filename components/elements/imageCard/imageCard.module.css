@@ -2,9 +2,9 @@
   height: 26rem;
 }
 .image {
+  object-fit: cover !important;
   width: 100%;
   height: 100%;
-  object-fit: cover;
 }
 .imgTitle {
   font-size: 1.5rem;
@@ -21,6 +21,8 @@
 }
 .imageWrap {
   height: 18rem;
+  width: 100%;
+  position: relative;
 }
 
 .flexbox {
@@ -44,14 +46,14 @@
   .imgContainer {
     height: 28rem;
   }
-  .imageWrap {
-    height: 20rem;
-  }
+  /* .imageWrap {
+    height: 100%;
+  } */
 }
 
 @media screen and (min-width: 864px) {
   .imageWrap {
-    height: 20rem;
+    height: 24rem;
   }
   .imgContainer {
     height: 28rem;
@@ -59,10 +61,10 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .imageWrap {
-    height: 18rem;
-  }
+  /* .imageWrap {
+    height: 100%;
+  } */
   .imgContainer {
-    height: 26rem;
+    height: 32rem;
   }
 }

@@ -16,6 +16,7 @@ const Video = (props) => {
         <ReactPlayer
           className={styles.reactPlayer}
           url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+          // url="https://vimeo.com/721214409"
           controls={true}
         />
         {videoTitle && (
