@@ -1,0 +1,11 @@
+.adContainer {
+  margin: 0.2rem 0;
+  height: 7rem;
+  width: 100%;
+  background-color: rgb(191, 114, 246);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #fff;
+}
