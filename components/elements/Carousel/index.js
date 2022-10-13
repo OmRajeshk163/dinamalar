@@ -54,7 +54,7 @@ const Carousel = ({
     dots: false,
     infinite: false,
     speed,
-    slidesToShow: 1.3,
+    slidesToShow: 1,
     slidesToScroll: slidesToShow,
     prevArrow: customPrevArrow,
     nextArrow: customNextArrow,
@@ -80,7 +80,7 @@ const Carousel = ({
         />
       </Box>
       <Slider {...settings}>
-        <SliderItem src="https://images.unsplash.com/photo-1665165154115-4a0515fd2347?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDh8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
+        <SliderItem src="https://images.unsplash.com/photo-1665331626213-8eb051094b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
         <SliderItem src="https://images.unsplash.com/uploads/1413135232798a43d1442/79e54635?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
         <SliderItem src="https://images.unsplash.com/photo-1665002931165-58406d38aaf6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEyfDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" />
         <SliderItem src="https://images.unsplash.com/photo-1633494974123-c66ad1b1fc9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUyfDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" />
