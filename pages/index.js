@@ -19,7 +19,6 @@ export default function Home() {
       <main className={styles.main}>
         <FeedList />
         <Carousel slidesToShow={1.5} />
-        <Link href={"/category-details"}>Details</Link>
       </main>
     </div>
   );
