@@ -10,16 +10,16 @@ const SocialShare = (props) => {
   return (
     <div className={styles.socialShareContainer}>
       <div className={styles.socialShareItem}>
-        <InstagramIcon fontSize="large" />
+        <InstagramIcon fontSize="large" color="secondary" />
       </div>
       <div className={styles.socialShareItem}>
-        <FacebookIcon fontSize="large" />
+        <FacebookIcon fontSize="large" color="primary" />
       </div>
       <div className={styles.socialShareItem}>
-        <TwitterIcon fontSize="large" />
+        <TwitterIcon fontSize="large" sx={{ color: "#2188ed" }} />
       </div>
       <div className={styles.socialShareItem}>
-        <YouTubeIcon fontSize="large" />
+        <YouTubeIcon fontSize="large" color="error" />
       </div>
     </div>
   );

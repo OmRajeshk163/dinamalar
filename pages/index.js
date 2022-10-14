@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import FeedList from "../components/modules/home/FeedList";
 import Carousel from "../components/elements/Carousel";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +18,8 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <FeedList />
-        <Carousel />
+        <Carousel slidesToShow={1.5} />
+        <Link href={"/category-details"}>Details</Link>
       </main>
     </div>
   );

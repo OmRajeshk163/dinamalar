@@ -9,7 +9,7 @@ const CategoryComments = ({ order = "row" }) => {
     <div className={styles.categoryCommentsContainer}>
       <div className={styles.commentWrap} style={{ flexDirection: order }}>
         <div className={styles.commentAvatar}>
-          <AccountCircleIcon fontSize="large" />
+          <AccountCircleIcon fontSize="large" color="primary" />
         </div>
         <div className={styles.commentText}>
           <Typography>

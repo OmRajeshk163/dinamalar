@@ -47,7 +47,7 @@ export default function CustumDrawer(props) {
             flexGrow: 1,
             m: 1,
             alignItems: "center",
-            color: "#425F57",
+            color: "var(--primary)",
             display: { xs: "flex", md: "none" },
           }}
         >

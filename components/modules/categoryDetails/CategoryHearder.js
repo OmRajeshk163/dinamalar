@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImageCard from "../../elements/imageCard";
-import { Box, Divider, Grid, Typography } from "@mui/material";
+import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
 import styles from "./categoryDetails.module.css";
 import CategoryAudio from "./CategoryAudio";
 import Video from "../../elements/Video.js";
@@ -15,26 +15,35 @@ import CategoryComments from "./CategoryComments";
 import RelatedNews from "./RelatedNews";
 import PostComment from "./PostComment";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Link from "next/link";
 
 const CategoryHearder = (props) => {
   return (
     <Box sx={{ flexGrow: 1, width: "100%", p: 1, mt: 5 }}>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          gap: 1,
-          p: 1,
-          alignItems: "flex-start",
-        }}
-      >
-        <ArrowBackIcon sx={{ fontSize: "2.5rem", fontWeight: 600 }} />
-        <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
-          Sports
-        </Typography>
-      </Box>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4} lg={4}>
+        <Grid item lg={4} md={6} sm={6} />
+        <Grid item xs={12} md={4} lg={5}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              gap: 1,
+              p: 1,
+              alignItems: "flex-start",
+            }}
+          >
+            <Link href="/">
+              <ArrowBackIcon
+                sx={{ fontSize: "2.5rem", fontWeight: 600, cursor: "pointer" }}
+              />
+            </Link>
+            <Typography
+              variant="h4"
+              sx={{ mb: 2, fontWeight: 600, color: "var(--primary)" }}
+            >
+              Sports
+            </Typography>
+          </Box>
           <ImageCard
             src={`https://farm1.staticflickr.com/505/31980127730_ea81689413_m.jpg`}
             alt="Forest"
@@ -47,8 +56,8 @@ const CategoryHearder = (props) => {
             <CategoryAudio src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3" />
 
             <CategoryDescription desc={categoryDescriptions[1].desc} />
-            <div className={styles.categoryMediaContainer}>
-              <Carousel />
+            <div>
+              <Carousel slidesToShow={1} />
             </div>
 
             <CategoryDescription desc={categoryDescriptions[2].desc} />

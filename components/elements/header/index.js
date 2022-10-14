@@ -41,7 +41,7 @@ const Header = (props) => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ background: "#425F57", p: 1 }}>
+      <AppBar position="fixed" sx={{ background: "var(--primary)", p: 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <NewspaperIcon
@@ -94,11 +94,11 @@ const Header = (props) => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
+                {/* {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
-                ))}
+                ))} */}
               </Menu>
             </Box>
             <NewspaperIcon
@@ -122,7 +122,14 @@ const Header = (props) => {
             >
               Dinamalar
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+                mr: 2,
+              }}
+            >
               {pages.map((page) => (
                 <Button
                   key={page}
@@ -137,7 +144,9 @@ const Header = (props) => {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar sx={{ bgcolor: "#fff", color: "#425F57" }}>D</Avatar>
+                  <Avatar sx={{ bgcolor: "#fff", color: "var(--primary)" }}>
+                    D
+                  </Avatar>
                 </IconButton>
               </Tooltip>
               <Menu

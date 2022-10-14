@@ -5,8 +5,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import ImageCard from "../../elements/imageCard";
 import Video from "../../elements/Video.js";
-import SampleVideo from "../../elements/Video.js/SampleVideo";
 import Audio from "../../elements/audio";
+import Link from "next/link";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function FeedList() {
   return (
-    <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
+    <Box sx={{ flexGrow: 1, width: "100%", mt: 5, cursor: "pointer" }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={4} lg={4}>
           <Item>

@@ -9,8 +9,9 @@
   margin: 2rem 0;
 }
 .categoryLinkWrap {
-  margin: 10px 0;
+  margin: 1.2rem 0;
   list-style-type: none;
+  line-height: 1.5;
 }
 .categoryLink {
   color: rgb(68, 122, 107);

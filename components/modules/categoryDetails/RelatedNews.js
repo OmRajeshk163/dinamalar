@@ -12,7 +12,7 @@ const RelatedNews = (props) => {
       </Typography>
       <div className={styles.relatedNewsWrap}>
         <div className={styles.relatedNewsImg}>
-          <NewspaperIcon fontSize="large" />
+          <NewspaperIcon fontSize="large" color="primary" />
         </div>
         <div className={styles.relatedNewsText}>
           <Typography>
@@ -23,34 +23,36 @@ const RelatedNews = (props) => {
       </div>
       <div className={styles.relatedNewsWrap}>
         <div className={styles.relatedNewsImg}>
-          <NewspaperIcon fontSize="large" />
+          <NewspaperIcon fontSize="large" color="primary" />
         </div>
         <div className={styles.relatedNewsText}>
           <Typography>
-            Various versions have evolved over the years, sometimes by accident,
-            sometimes on purpose (injected humour and the like).
+            Classical Latin literature from 45 BC, making it over 2000 years
+            old.
           </Typography>
         </div>
       </div>
       <div className={styles.relatedNewsWrap}>
         <div className={styles.relatedNewsImg}>
-          <NewspaperIcon fontSize="large" />
+          <NewspaperIcon fontSize="large" color="primary" />
         </div>
         <div className={styles.relatedNewsText}>
           <Typography>
-            Various versions have evolved over the years, sometimes by accident,
-            sometimes on purpose (injected humour and the like).
+            Contrary to popular belief, Lorem Ipsum is not simply random text.
+            It has roots in a piece of classical Latin literature from 45 BC,
+            making it over 2000 years old.
           </Typography>
         </div>
       </div>
       <div className={styles.relatedNewsWrap}>
         <div className={styles.relatedNewsImg}>
-          <NewspaperIcon fontSize="large" />
+          <NewspaperIcon fontSize="large" color="primary" />
         </div>
         <div className={styles.relatedNewsText}>
           <Typography>
-            Various versions have evolved over the years, sometimes by accident,
-            sometimes on purpose (injected humour and the like).
+            In publishing and graphic design, Lorem ipsum is a placeholder text
+            commonly used to demonstrate the visual form of a document or a
+            typeface without relying on meaningful content.
           </Typography>
         </div>
       </div>

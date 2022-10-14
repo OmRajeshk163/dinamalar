@@ -7,6 +7,8 @@
   height: 100%;
 }
 .imgTitle {
+  /* font-family: "IBM Plex Serif", serif; */
+  font-family: "Bree Serif", serif;
   font-size: 1.5rem;
   padding: 0.3rem 0rem;
   display: block;
@@ -56,7 +58,7 @@
     height: 24rem;
   }
   .imgContainer {
-    height: 28rem;
+    height: 32rem;
   }
 }
 
