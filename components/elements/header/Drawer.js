@@ -12,6 +12,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import Typography from "@mui/material/Typography";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
+import Link from "next/link";
 
 export default function CustumDrawer(props) {
   const { drawerOpen, setDrawerOpen } = props;
@@ -51,7 +52,9 @@ export default function CustumDrawer(props) {
             display: { xs: "flex", md: "none" },
           }}
         >
-          <NewspaperIcon sx={{ m: 1 }} />
+          <Link href="/">
+            <NewspaperIcon sx={{ m: 1 }} />
+          </Link>
           <Typography
             variant="h5"
             noWrap

@@ -15,6 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import PropTypes from "prop-types";
 import Drawer from "./Drawer";
+import Link from "next/link";
 const pages = ["Sports", "Space", "Technology"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -44,9 +45,11 @@ const Header = (props) => {
       <AppBar position="fixed" sx={{ background: "var(--primary)", p: 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <NewspaperIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-            />
+            <Link href="/">
+              <NewspaperIcon
+                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              />
+            </Link>
             <Typography
               variant="h6"
               noWrap
@@ -101,9 +104,11 @@ const Header = (props) => {
                 ))} */}
               </Menu>
             </Box>
-            <NewspaperIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-            />
+            <Link href="/">
+              <NewspaperIcon
+                sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              />
+            </Link>
             <Typography
               variant="h5"
               noWrap
