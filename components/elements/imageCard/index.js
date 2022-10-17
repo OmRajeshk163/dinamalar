@@ -38,7 +38,7 @@ const ImageCard = (props) => {
               className={styles.image}
             />
           </div>
-          <Typography align="left" variant="body2" className={styles.imgTitle}>
+          <Typography align="left" variant="h6" className={styles.imgTitle}>
             {imgTitle}
           </Typography>
           {audio === "1" && (

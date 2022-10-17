@@ -28,7 +28,7 @@ const Video = (props) => {
             {videoTitle}
           </Typography>
         )}
-        <Divider />
+        {/* <Divider />
         <Box className={styles.flexbox} sx={{ mt: 2 }}>
           <Box className={styles.flexbox}>
             <AccessTimeIcon />
@@ -41,7 +41,7 @@ const Video = (props) => {
               10
             </Typography>
           </Box>
-        </Box>
+        </Box> */}
       </ImageListItem>
     </div>
   );
