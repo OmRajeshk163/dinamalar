@@ -55,12 +55,14 @@ const ImageCard = (props) => {
           <Box className={styles.flexbox} sx={{ mt: 2 }}>
             <Box className={styles.flexbox}>
               <AccessTimeIcon color="primary" />
-              <Typography sx={{ ml: 1 }}>{lastupdated}</Typography>
-              <Typography>&nbsp; {`| ${category}`}</Typography>
+              <Typography sx={{ ml: 1 }} variant="body2">
+                {lastupdated}
+              </Typography>
+              <Typography variant="body2">&nbsp; {`| ${category}`}</Typography>
             </Box>
             <Box className={styles.flexbox}>
               <CommentIcon color="primary" />
-              <Typography align="left" variant="body1" sx={{ ml: 1 }}>
+              <Typography align="left" variant="body2" sx={{ ml: 1 }}>
                 {commentscount}
               </Typography>
             </Box>
