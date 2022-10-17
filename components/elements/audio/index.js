@@ -5,14 +5,20 @@ import Pause from "./Pause";
 import styles from "./audio.module.css";
 import useAudioPlayer from "./useAudioPlayer";
 
-function Audio() {
+function Audio(props) {
   const { curTime, duration, playing, setPlaying, setClickedTime } =
     useAudioPlayer();
-
+  const { src } = props;
   return (
-    <div className={styles.audioPlayer}>
+    <div
+      className={styles.audioPlayer}
+      style={{ backgroundImage: `url(${src})` }}
+    >
       <audio id="audio">
-        <source src="http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg" />
+        <source
+          // src="http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg"
+          src=""
+        />
         Your browser does not support the <code>audio</code> element.
       </audio>
       <Song

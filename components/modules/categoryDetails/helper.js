@@ -1,50 +1,23 @@
 export const categoryDescriptions = [
   {
     id: 1,
-    desc: `Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. And more
-              recently with desktop publishing software like Aldus PageMaker
-              including versions of Lorem Ipsum.`,
+    desc: `கலிபோர்னியா: அமெரிக்கா கலிபோர்னியாவில் கடத்தப்பட்ட, 8 மாத குழந்தை உட்பட 4 இந்திய வம்சாவளியை சேர்ந்தவர்களை மெர்சிட் கவுண்டி போலீசார் சடலமாக `,
   },
   {
     id: 2,
-    desc: `It has been the industry's standard dummy text ever since the
-              1500s, when an unknown printer took a galley of type and scrambled
-              it to make a type specimen book. And more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.It is a long established fact that a reader will be
-              distracted by the readable content of a page when looking at its
-              layout.`,
+    desc: `மீட்டனர்.அமெரிக்காவின் கலிபோர்னியா நகரை சேர்ந்த ஜஸ்தீப் சிங்(36), மனைவி ஜஸ்லீன் கவுர்(27), இவர்களின் 8 மாத குழந்தை அரூஹி தேரி மற்றும் அமன்தீப் சிங்(39) என்பவர்கள் கடத்தி செல்லப்பட்டனர்.`,
   },
 
   {
     id: 3,
-    desc: `There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form, by
-              injected humour, or randomised words which don't look even
-              slightly believable. If you are going to use a passage of Lorem
-              Ipsum, you need to be sure there isn't anything embarrassing
-              hidden in the middle of text.`,
+    desc: `நெடுஞ்சாலையில், அவர்கள் பணிபுரியும் இடத்திற்கு அருகே, அவர்களை கடத்தல்காரர்கள் வலுக்கட்டாயமாக கடத்தி சென்றனர்.அவர்களிடம் ஆயுதம் உள்ளதாகவும், ஆபத்தானவர்கள் எனவும் கூறிய போலீசார்,`,
   },
   {
     id: 4,
-    desc: `The point of using Lorem Ipsum is that it has a more-or-less
-              normal distribution of letters, as opposed to using 'Content here,
-              content here', making it look like readable English. Many desktop
-              publishing packages and web page editors now use Lorem Ipsum as
-              their default model text, and a search for 'lorem ipsum' will
-              uncover many web sites still in their infancy. Various versions
-              have evolved over the years, sometimes by accident, sometimes on
-              purpose (injected humour and the like).`,
+    desc: `விசாரணை நடந்து வருவதால், மேற்கொண்டு தகவல் தெரிவிக்க மறுத்துவிட்டனர்.மீட்பு:கடத்தலுக்கான காரணம் மற்றும் நோக்கம் ஆகியவை பற்றி கூறாத போலீசார் குற்றவாளிகளை அடையாளம் கண்டால்,`,
   },
   {
     id: 5,
-    desc: `All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks 
-        as necessary, making this the first true generator on the Internet. It uses a dictionary 
-        of over 200 Latin words, combined with a handful of model sentence structures, to generate 
-        Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from 
-        repetition, injected humour, or non-characteristic words etc.`,
+    desc: `பொது மக்கள் அவர்களை அணுகாமல் தொலைபேசி மூலம் தகவல் தெரிவிக்கும்படி அறிவுறுத்தினர்.இந்நிலையில், கடத்தி செல்லப்பட்ட குடும்பத்தினர், போலீசாரை தொடர்புகொண்டு, அவர் தனது குற்றத்தை ஒப்புக்கொண்டனர். இதையடுத்து, இன்று(அக்.,06) 8 மாத குழந்தை உட்பட 4 இந்திய வம்சாவளியை சேர்ந்தவர்களை மெர்சிட் கவுண்டி போலீசார் சடலமாக மீட்டனர்.`,
   },
 ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -7,7 +7,9 @@ import ImageCard from "../../elements/imageCard";
 import Video from "../../elements/Video.js";
 import Audio from "../../elements/audio";
 import Link from "next/link";
-
+import axios from "axios";
+import { Typography } from "@mui/material";
+import { NewsFeeds } from "./helper";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -17,59 +19,59 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function FeedList() {
+  const [state, setState] = useState([]);
+
+  function chunkSubstr(str, size) {
+    const numChunks = Math.ceil(str.length / size);
+    const chunks = new Array(numChunks);
+
+    for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+      chunks[i] = { text: str.substr(o, size), id: i };
+    }
+
+    return chunks;
+  }
+
+  useEffect(() => {
+    const newsFeedsAPi = "/api/newsFeeds";
+    axios.get(newsFeedsAPi).then((response) => {
+      console.log("resxdsdreseerror", response);
+      setState(response.data.items);
+    });
+  }, []);
+  console.log("stateres", state);
   return (
     <Box sx={{ flexGrow: 1, width: "100%", mt: 5, cursor: "pointer" }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <ImageCard
-              src={`https://farm1.staticflickr.com/505/31980127730_ea81689413_m.jpg`}
-              alt="Forest"
-              category="Nature"
-              imgTitle="Fast Company Shuts Down Website After Hackers Compromise Apple News Feed"
-            />
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <ImageCard
-              src={`https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/pr-sample23.jpg`}
-              alt="Forest"
-              category="Books"
-              imgTitle={`Queen Elizabeth's News Coverage Adding Fuel To "Infobesity": Report`}
-            />
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <ImageCard
-              src={`https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/pr-sample24.jpg`}
-              imgTitle={`Facebook News Feed Broken for Hours, Spammed with Bot Posts to Celebrity Pages: Report`}
-              alt="Forest"
-              category="Temple"
-            />
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <ImageCard
-              src={`https://farm5.static.flickr.com/4094/4923591327_151f96ea71_m.jpg`}
-              imgTitle={`Man Creates Food And Water Dispenser For Stray Dogs`}
-              alt="Forest"
-              category="World"
-            />
-          </Item>
-        </Grid>
-        <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <ImageCard
-              src={`https://farm6.static.flickr.com/5007/5250579551_b7f6b8bec6_m.jpg`}
-              imgTitle={`Man Creates Food And Water Dispenser For Stray Dogs`}
-              alt="Forest"
-              category="India"
-            />
-          </Item>
-        </Grid>
+        {state.map((feed, index) => (
+          <Grid item xs={12} md={4} lg={4} key={index}>
+            <Item>
+              {/* {feed.audio == "1" ? (
+                <Audio src={feed.StoryImage} />
+              ) : (
+                <ImageCard
+                  src={feed.StoryImage}
+                  alt={feed.title}
+                  category={feed.categoryDisplay}
+                  imgTitle={feed.title}
+                  commentscount={feed.commentscount}
+                  lastupdated={feed.lastupdated}
+                  audio={feed.audio}
+                />
+              )} */}
+              <ImageCard
+                src={feed.StoryImage}
+                alt={feed.title}
+                category={feed.categoryDisplay}
+                imgTitle={feed.title}
+                commentscount={feed.commentscount}
+                lastupdated={feed.lastupdated}
+                audio={feed.audio}
+              />
+            </Item>
+          </Grid>
+        ))}
+
         <Grid item xs={12} md={4} lg={4}>
           <Item>
             <Video
@@ -78,11 +80,11 @@ export default function FeedList() {
             />
           </Item>
         </Grid>
-        <Grid item xs={12} md={4} lg={4}>
+        {/* <Grid item xs={12} md={4} lg={4}>
           <Item>
             <Audio />
           </Item>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Box>
   );

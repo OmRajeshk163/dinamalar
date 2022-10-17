@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <FeedList />
-        <Carousel slidesToShow={1.5} />
+        {/* <Carousel slidesToShow={1.5} /> */}
       </main>
     </div>
   );

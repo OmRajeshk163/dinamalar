@@ -6,9 +6,19 @@ import styles from "./imageCard.module.css";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CommentIcon from "@mui/icons-material/Comment";
 import Link from "next/link";
+import Audio from "../audio";
+import MicOffIcon from "@mui/icons-material/MicOff";
 
 const ImageCard = (props) => {
-  const { src, alt, imgTitle = "", category = "" } = props;
+  const {
+    src,
+    alt,
+    imgTitle = "",
+    category = "",
+    commentscount = "",
+    lastupdated = "",
+    audio,
+  } = props;
 
   const myLoader = () => {
     return src;
@@ -31,17 +41,27 @@ const ImageCard = (props) => {
           <Typography align="left" variant="body2" className={styles.imgTitle}>
             {imgTitle}
           </Typography>
+          {audio === "1" && (
+            <div style={{ position: "absolute", bottom: "30%", right: "5%" }}>
+              <button
+                className={styles.playerButton}
+                onClick={() => console.log()}
+              >
+                <MicOffIcon />
+              </button>
+            </div>
+          )}
           <Divider />
           <Box className={styles.flexbox} sx={{ mt: 2 }}>
             <Box className={styles.flexbox}>
               <AccessTimeIcon color="primary" />
-              <Typography sx={{ ml: 1 }}>12:04 PM</Typography>
+              <Typography sx={{ ml: 1 }}>{lastupdated}</Typography>
               <Typography>&nbsp; {`| ${category}`}</Typography>
             </Box>
             <Box className={styles.flexbox}>
               <CommentIcon color="primary" />
               <Typography align="left" variant="body1" sx={{ ml: 1 }}>
-                10
+                {commentscount}
               </Typography>
             </Box>
           </Box>

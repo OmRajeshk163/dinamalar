@@ -1,5 +1,6 @@
 .imgContainer {
   height: 26rem;
+  position: relative;
 }
 .image {
   object-fit: cover !important;
@@ -32,6 +33,30 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.playerButton {
+  width: fit-content;
+  margin: 1rem;
+  padding: 5px;
+  background-color: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 3rem;
+}
+.playerButton:focus {
+  outline: none;
+}
+.playerButton:hover {
+  cursor: pointer;
+  border: 1px solid greenyellow;
+}
+.playerButton:hover svg {
+  color: greenyellow;
+}
+.playerButton svg {
+  font-size: 3em;
+  color: var(--primary);
+}
+
 /* @media screen and (max-width: 480px) {
   .imgContainer {
     height: 27rem;

@@ -16,8 +16,19 @@ import RelatedNews from "./RelatedNews";
 import PostComment from "./PostComment";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
+import { NewsFeeds } from "../home/helper";
 
 const CategoryHearder = (props) => {
+  const {
+    descriptions,
+    categoryDisplay,
+    StoryImage,
+    title,
+    commentscount,
+    lastupdated,
+    photoitems,
+  } = props.selectedNews;
+
   return (
     <Box sx={{ flexGrow: 1, width: "100%", p: 1, mt: 5 }}>
       <Grid container spacing={2}>
@@ -41,14 +52,16 @@ const CategoryHearder = (props) => {
               variant="h4"
               sx={{ mb: 2, fontWeight: 600, color: "var(--primary)" }}
             >
-              Sports
+              {categoryDisplay}
             </Typography>
           </Box>
           <ImageCard
-            src={`https://farm1.staticflickr.com/505/31980127730_ea81689413_m.jpg`}
+            src={StoryImage}
             alt="Forest"
-            category="Nature"
-            imgTitle="Fast Company Shuts Down Website After Hackers Compromise Apple News Feed"
+            category={categoryDisplay}
+            imgTitle={title}
+            commentscount={commentscount}
+            lastupdated={lastupdated}
           />
           <Divider />
           <div className={styles.categoryDescWrap}>
@@ -56,8 +69,8 @@ const CategoryHearder = (props) => {
             <CategoryAudio src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3" />
 
             <CategoryDescription desc={categoryDescriptions[1].desc} />
-            <div>
-              <Carousel slidesToShow={1} />
+            <div className={styles.categoryMediaContainer}>
+              <Carousel slidesToShow={1} photoitems={photoitems} />
             </div>
 
             <CategoryDescription desc={categoryDescriptions[2].desc} />

@@ -21,7 +21,7 @@ const Arrow = ({ className, onClick, type }) => {
 };
 const mySliderImgLoader = (src) => src;
 
-const SliderItem = ({ src = "", alt = " " }) => {
+const SliderItem = ({ src = "", alt = " ", title = "" }) => {
   return (
     <div className={styles.sliderItemWrap}>
       <Image
@@ -32,12 +32,12 @@ const SliderItem = ({ src = "", alt = " " }) => {
         objectFit="contain"
         className={styles.sliderItemImage}
       />
-      <div style={{ position: "absolute", bottom: 10, left: "22%" }}>
+      <div style={{ position: "absolute", bottom: 10, left: "50%" }}>
         <Typography
           variant="h6"
           sx={{ fontSize: "1.2rem", mb: 2, color: "#fff", fontWeight: 600 }}
         >
-          Lorem Ipsium
+          {title}
         </Typography>
       </div>
     </div>
@@ -52,6 +52,7 @@ const Carousel = ({
   dots,
   adaptiveHeight,
   responsive,
+  photoitems,
 }) => {
   const settings = {
     dots: false,
@@ -94,7 +95,22 @@ const Carousel = ({
           sx={{ fontSize: "2.5rem", color: "#fff", fontWeight: 600 }}
         />
       </Box>
-      <Item>
+      {photoitems ? (
+        photoitems.length > 0 && (
+          <Item>
+            <Slider {...settings}>
+              {photoitems.map((photo, index) => (
+                <SliderItem
+                  key={index}
+                  // src="https://images.unsplash.com/photo-1665331626213-8eb051094b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
+                  src={photo.thumbnailUrl}
+                  title={photo.title}
+                />
+              ))}
+            </Slider>
+          </Item>
+        )
+      ) : (
         <Slider {...settings}>
           <SliderItem src="https://images.unsplash.com/photo-1665331626213-8eb051094b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
           <SliderItem src="https://images.unsplash.com/uploads/1413135232798a43d1442/79e54635?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
@@ -102,7 +118,7 @@ const Carousel = ({
           <SliderItem src="https://images.unsplash.com/photo-1633494974123-c66ad1b1fc9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDUyfDZzTVZqVExTa2VRfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60" />
           <SliderItem src="https://images.unsplash.com/photo-1560517961-1cdc66f62d3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8NnNNVmpUTFNrZVF8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60" />
         </Slider>
-      </Item>
+      )}
     </div>
   );
 };
