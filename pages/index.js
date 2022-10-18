@@ -19,6 +19,14 @@ export default function Home() {
       <main className={styles.main}>
         <FeedList />
         {/* <Carousel slidesToShow={1.5} /> */}
+        <iframe
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          // src="https://drive.google.com/file/d/1JOZBkMwOllSNg7ameXnAj1dlagusMeux/preview"
+          src="https://drive.google.com/file/d/1GAsx81RWr8uAEaaUSgSzifuHYOWgaJo0/view"
+          width="640"
+          height="480"
+          allow="autoplay"
+        />
       </main>
     </div>
   );
