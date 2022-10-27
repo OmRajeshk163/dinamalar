@@ -30,6 +30,12 @@ const Document = () => {
           rel="stylesheet"
         />
         <link rel="stylesheet" href="https://use.typekit.net/dgo3wwi.css" />
+        {/* For Google to connect to our website */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7325550331393221"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <body>
         <Main />
