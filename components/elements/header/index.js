@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,20 +10,19 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import PropTypes from "prop-types";
 import Drawer from "./Drawer";
 import Link from "next/link";
-const pages = ["Sports", "Space", "Technology"];
+import DinamalarLogo from "./Logo";
+
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Sports", "Space", "Technology"];
 
 const Header = (props) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-
   const handleOpenNavMenu = (event) => {
     setDrawerOpen(true);
     // setAnchorElNav(event.currentTarget);
@@ -45,29 +44,6 @@ const Header = (props) => {
       <AppBar position="fixed" sx={{ background: "var(--primary)", p: 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Link href="/">
-              <NewspaperIcon
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-              />
-            </Link>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              // href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Dinamalar
-            </Typography>
-
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -104,29 +80,7 @@ const Header = (props) => {
                 ))} */}
               </Menu>
             </Box>
-            <Link href="/">
-              <NewspaperIcon
-                sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-              />
-            </Link>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".1rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Dinamalar
-            </Typography>
+            <DinamalarLogo />
             <Box
               sx={{
                 flexGrow: 1,

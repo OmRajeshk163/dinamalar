@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
 
-function useAudioPlayer() {
+function useAudioPlayer(detailUrl) {
   const [duration, setDuration] = useState();
   const [curTime, setCurTime] = useState();
   const [playing, setPlaying] = useState(false);
   const [clickedTime, setClickedTime] = useState();
+
+  // const audioOnclickHandler = async () => {
+  //   const detailedFeed = await axios.get(detailUrl).data;
+  //   const getmp3url = detailedFeed.data.item.description.filter(
+  //     (desc) => desc.audioLink != ""
+  //   )[0].audioLink;
+  //   const feedmp3 = await axios.get(getmp3url);
+  //   return feedmp3;
+  // };
 
   useEffect(() => {
     const audio = document.getElementById("audio");

@@ -1,17 +1,19 @@
-import { Typography } from "@mui/material";
 import React from "react";
-
-const SampleVideo = () => {
+import { Typography } from "@mui/material";
+import dynamic from "next/dynamic";
+const ReactHlsPlayer = dynamic(() => import("react-hls-player"), {
+  ssr: false,
+});
+const SampleVideo = ({ src }) => {
   return (
     <div>
-      <iframe
-        width="420"
-        height="300"
-        src="//www.youtube.com/watch?v=ysz5S6PUM-U"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-      <Typography>Custom Player</Typography>
+      <ReactHlsPlayer
+        src={src}
+        autoPlay={false}
+        controls={true}
+        width="100%"
+        height="auto"
+      />
     </div>
   );
 };

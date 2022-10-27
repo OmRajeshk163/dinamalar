@@ -17,18 +17,22 @@ import PostComment from "./PostComment";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
 import { NewsFeeds } from "../home/helper";
+import SampleVideo from "../../elements/Video.js/SampleVideo";
+import NotFoundImg from "../../../assets/Images/404.jpg";
 
 const CategoryHearder = (props) => {
-  const {
-    descriptions,
-    categoryDisplay,
-    StoryImage,
-    title,
-    commentscount,
-    lastupdated,
-    photoitems,
-  } = props.selectedNews;
-
+  const { selectedNews } = props;
+  const description = selectedNews?.description ?? [];
+  const categoryDisplay = selectedNews?.categoryDisplay ?? ``;
+  const StoryImage = selectedNews?.StoryImage ?? NotFoundImg.src;
+  const title = selectedNews?.title ?? ``;
+  const commentscount = selectedNews?.commentscount ?? ``;
+  const lastupdated = selectedNews?.lastupdated ?? ``;
+  const relatedLinks = selectedNews?.relatedLinks ?? ``;
+  const categoryname = selectedNews?.categoryname;
+  const guid = selectedNews?.guid;
+  const comments = selectedNews?.comments;
+  const socialLinks = selectedNews?.socialLinks;
   return (
     <Box sx={{ flexGrow: 1, width: "100%", p: 1, mt: 5 }}>
       <Grid container spacing={2}>
@@ -57,7 +61,7 @@ const CategoryHearder = (props) => {
           </Box>
           <ImageCard
             src={StoryImage}
-            alt="Forest"
+            alt={title}
             category={categoryDisplay}
             imgTitle={title}
             commentscount={commentscount}
@@ -65,51 +69,85 @@ const CategoryHearder = (props) => {
           />
           <Divider />
           <div className={styles.categoryDescWrap}>
-            <CategoryDescription desc={categoryDescriptions[0].desc} />
-            <CategoryAudio src="http://codeskulptor-demos.commondatastorage.googleapis.com/GalaxyInvaders/theme_01.mp3" />
+            {description?.length > 0 &&
+              description.map((desc, index) => {
+                if (desc.content != "") {
+                  return (
+                    <CategoryDescription desc={desc.content} key={index} />
+                  );
+                }
+                if (desc.audioLink != "") {
+                  return <CategoryAudio src={desc.audioLink} key={index} />;
+                }
+                if (desc.videoLink != "") {
+                  return (
+                    // <Video
+                    //   src={desc.videoLink}
+                    //   category="World"
+                    //   videoTitle=""
+                    // />
+                    <SampleVideo src={desc.videoLink} key={index} />
+                  );
+                }
+                if (desc.photoGallery.length > 0) {
+                  return (
+                    <div className={styles.categoryMediaContainer} key={index}>
+                      <Carousel
+                        slidesToShow={1}
+                        photoitems={desc.photoGallery}
+                      />
+                    </div>
+                  );
+                }
+                if (desc.adLink != "") {
+                  return (
+                    <div className={styles.categoryMediaContainer} key={index}>
+                      <Ad />
+                    </div>
+                  );
+                }
+              })}
 
-            <CategoryDescription desc={categoryDescriptions[1].desc} />
-            <div className={styles.categoryMediaContainer}>
-              <Carousel slidesToShow={1} photoitems={photoitems} />
-            </div>
-
-            <CategoryDescription desc={categoryDescriptions[2].desc} />
-            <div className={styles.categoryMediaContainer}>
-              <Video
-                category="World"
-                videoTitle="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
-              />
-            </div>
-
-            <CategoryDescription desc={categoryDescriptions[3].desc} />
-            <div className={styles.categoryMediaContainer}>
-              <Ad />
-            </div>
-            <CategoryDescription desc={categoryDescriptions[4].desc} />
             <Divider />
-            <div className={styles.categoryMediaContainer}>
+            {/* <div className={styles.categoryMediaContainer}>
               <CategoryLinks />
             </div>
-            <Divider />
+            <Divider /> */}
+
             <div className={styles.categoryMediaContainer}>
-              <RelatedNews />
+              <RelatedNews relatedLinks={relatedLinks} guid={guid} />
               <Divider />
             </div>
 
             <div className={styles.categoryMediaContainer}>
-              <PostComment />
+              <PostComment categoryname={categoryname} guid={guid} />
             </div>
             <div>
               <Typography variant="h5" sx={{ m: 2 }}>
                 Comments
               </Typography>
-              <CategoryComments />
-              <CategoryComments order="row-reverse" />
-              <CategoryComments />
+              {comments?.length > 0 ? (
+                comments.map((comment, index) => {
+                  if (index % 2 === 0) {
+                    return <CategoryComments key={index} {...comment} />;
+                  }
+                  return (
+                    <CategoryComments
+                      key={index}
+                      order="row-reverse"
+                      {...comment}
+                    />
+                  );
+                })
+              ) : (
+                <Typography sx={{ textAlign: "center", m: 2 }}>
+                  No Comments
+                </Typography>
+              )}
               <Divider />
             </div>
             <div className={styles.categoryMediaContainer}>
-              <SocialShare />
+              <SocialShare socialLinks={socialLinks} />
             </div>
           </div>
         </Grid>
