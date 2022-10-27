@@ -11,23 +11,23 @@ const SocialShare = ({ socialLinks }) => {
 
   return (
     <div className={styles.socialShareContainer}>
-      <a href={facebook} target="_blank">
+      <a href={facebook} target="_blank" rel="noreferrer">
         <div className={styles.socialShareItem}>
           <FacebookIcon fontSize="large" color="primary" />
         </div>
       </a>
-      <a href={instagram} target="_blank">
+      <a href={instagram} target="_blank" rel="noreferrer">
         <div className={styles.socialShareItem}>
           <InstagramIcon fontSize="large" color="secondary" />
         </div>
       </a>
-      <a href={twitter} target="_blank">
+      <a href={twitter} target="_blank" rel="noreferrer">
         <div className={styles.socialShareItem}>
           <TwitterIcon fontSize="large" sx={{ color: "#2188ed" }} />
         </div>
       </a>
 
-      <a href={youtube} target="_blank">
+      <a href={youtube} target="_blank" rel="noreferrer">
         <div className={styles.socialShareItem}>
           <YouTubeIcon fontSize="large" color="error" />
         </div>
