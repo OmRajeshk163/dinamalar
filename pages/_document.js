@@ -4,13 +4,13 @@ const Document = () => {
   return (
     <Html lang="en">
       <Head>
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-        <meta content="utf-8" http-equiv="encoding" />
+        <meta content="text/html;charSet=utf-8" httpEquiv="Content-Type" />
+        <meta content="utf-8" httpEquiv="encoding" />
 
         <link
           rel="stylesheet"
           type="text/css"
-          charset="UTF-8"
+          charSet="UTF-8"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
         />
         <link

@@ -1,27 +1,18 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import Typography from "@mui/material/Typography";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import Link from "next/link";
+import DinamalarLogo from "./Logo";
+import axios from "axios";
 
 export default function CustumDrawer(props) {
   const { drawerOpen, setDrawerOpen } = props;
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
+  const [tabs, setTabs] = useState([]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -34,6 +25,15 @@ export default function CustumDrawer(props) {
     // setState({ ...state, [anchor]: open });
     setDrawerOpen(open);
   };
+
+  useEffect(() => {
+    const getTabList = async () => {
+      const tabsAPi = "/api/tabs";
+      const tabList = await axios.get(tabsAPi);
+      setTabs(tabList.data);
+    };
+    getTabList();
+  }, []);
 
   const list = (anchor) => (
     <Box
@@ -52,37 +52,19 @@ export default function CustumDrawer(props) {
             display: { xs: "flex", md: "none" },
           }}
         >
-          <Link href="/">
-            <NewspaperIcon sx={{ m: 1 }} />
-          </Link>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".2rem",
-              textDecoration: "none",
-            }}
-          >
-            Dinamalar
-          </Typography>
+          <DinamalarLogo />
         </Box>
       </List>
       <Divider />
       <List>
-        {["Temples", "Game", "Cinema", "NRI", "Books"].map((text, index) => (
-          <ListItem key={text}>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {tabs.length > 0 &&
+          tabs?.map((tab, index) => (
+            <ListItem key={tab.name}>
+              <ListItemButton>
+                <ListItemText primary={tab.name} />
+              </ListItemButton>
+            </ListItem>
+          ))}
       </List>
     </Box>
   );

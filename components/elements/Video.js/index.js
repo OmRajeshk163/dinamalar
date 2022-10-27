@@ -8,15 +8,15 @@ import CommentIcon from "@mui/icons-material/Comment";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 
 const Video = (props) => {
-  const { videoTitle = "", category = "" } = props;
-
+  const { videoTitle = "", category = "", src = "" } = props;
   return (
     <div className={styles.videoContainer}>
       <ImageListItem>
         <ReactPlayer
           className={styles.reactPlayer}
-          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
+          // url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
           // url="https://vimeo.com/721214409"
+          url={src}
           controls={true}
         />
         {videoTitle && (

@@ -25,11 +25,12 @@ const SliderItem = ({ src = "", alt = " ", title = "" }) => {
   return (
     <div className={styles.sliderItemWrap}>
       <Image
-        loader={() => mySliderImgLoader(src)}
+        // loader={() => mySliderImgLoader(src)}
         alt={alt}
         src={src}
         layout="fill"
         objectFit="contain"
+        unoptimized={true}
         className={styles.sliderItemImage}
       />
       <div style={{ position: "absolute", bottom: 10, left: "50%" }}>
@@ -103,8 +104,8 @@ const Carousel = ({
                 <SliderItem
                   key={index}
                   // src="https://images.unsplash.com/photo-1665331626213-8eb051094b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
-                  src={photo.thumbnailUrl}
-                  title={photo.title}
+                  src={photo.image}
+                  title={photo.text}
                 />
               ))}
             </Slider>

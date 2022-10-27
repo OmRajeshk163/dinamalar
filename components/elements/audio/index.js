@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Song from "./Song";
 import Play from "./Play";
 import Pause from "./Pause";
@@ -8,7 +8,7 @@ import useAudioPlayer from "./useAudioPlayer";
 function Audio(props) {
   const { curTime, duration, playing, setPlaying, setClickedTime } =
     useAudioPlayer();
-  const { src } = props;
+  const { src, detailUrl } = props;
   return (
     <div
       className={styles.audioPlayer}
@@ -17,7 +17,7 @@ function Audio(props) {
       <audio id="audio">
         <source
           // src="http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg"
-          src=""
+          src="https://imgg.dinamalar.com/audionews/news/Dmr_3154056_16201007.mp3"
         />
         Your browser does not support the <code>audio</code> element.
       </audio>
