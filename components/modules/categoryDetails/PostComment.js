@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import styles from "./categoryDetails.module.css";
 
 const PostComment = ({ categoryname, guid }) => {
   const [comment, setComment] = useState({
@@ -54,9 +55,14 @@ const PostComment = ({ categoryname, guid }) => {
         try {
           const commentPostApi = `/api/comments`;
           const postRes = await axios.post(commentPostApi, params);
-          if (postRes.data?.item[0]?.displaymessage) {
+          if (
+            postRes.data?.item[0]?.success != "0" &&
+            postRes.data?.item[0]?.displaymessage
+          ) {
             alert(postRes.data.item[0].displaymessage);
             setComment({ yourname: "", yourmailid: "", Message: "" });
+          } else {
+            alert(postRes.data.item[0].displaymessage);
           }
           console.log("postRespostRes", postRes);
         } catch (err) {
@@ -72,7 +78,7 @@ const PostComment = ({ categoryname, guid }) => {
     setComment((prev) => ({ ...prev, [name]: value }));
   };
   return (
-    <div>
+    <Fragment>
       <form onSubmit={onCommentSubmitHandler}>
         <Typography variant="h5" sx={{ m: 2 }}>
           Post Comment
@@ -124,6 +130,7 @@ const PostComment = ({ categoryname, guid }) => {
             multiline
             rows={3}
             name="Message"
+            required
             value={comment.Message}
             onChange={onInputChangeHandler}
             sx={{ width: "100%", mb: 1 }}
@@ -136,7 +143,7 @@ const PostComment = ({ categoryname, guid }) => {
           </Button>
         </div>
       </form>
-    </div>
+    </Fragment>
   );
 };
 

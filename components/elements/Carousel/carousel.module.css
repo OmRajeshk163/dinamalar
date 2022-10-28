@@ -1,16 +1,28 @@
 .sliderItemWrap {
-  height: 17rem;
+  height: 15rem;
   width: 100%;
   position: relative;
   margin-right: 0.5rem;
 }
 .sliderItemImage {
-  object-fit: fill !important;
+  object-fit: cover;
   width: 100%;
   height: 100%;
+  padding: 1rem;
 }
 .imgGalleryContainer {
   margin-top: 1rem;
   width: 100%;
   height: 100%;
+}
+
+.arrowWrap {
+  color: black;
+  position: absolute;
+  right: 0;
+  top: -4rem;
+}
+
+.arrowWrap svg {
+  font-size: 2.5rem;
 }

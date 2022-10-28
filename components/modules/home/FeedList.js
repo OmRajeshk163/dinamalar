@@ -11,6 +11,7 @@ import axios from "axios";
 import { Typography } from "@mui/material";
 import { NewsFeeds } from "./helper";
 import Loading from "../../elements/loading";
+import Carousel from "../../elements/Carousel";
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -51,7 +52,7 @@ export default function FeedList({ mainId }) {
     getGetFeedList();
   }, [mainId]);
 
-  console.log("stateres", newsFeeds);
+  console.log("newsFeeds", newsFeeds);
   return (
     <Box sx={{ flexGrow: 1, width: "100%", mt: 5, cursor: "pointer" }}>
       <Grid container spacing={2}>
@@ -66,6 +67,25 @@ export default function FeedList({ mainId }) {
                 <Link href={`/category-details/${feed.id}`} key={index}>
                   <Grid item xs={12} md={4} lg={4}>
                     <Item>
+                      {feed.photoitems?.length > 0 ? (
+                        <Carousel
+                          slidesToShow={1.2}
+                          slidesToScroll={1}
+                          photoitems={feed.photoitems}
+                        />
+                      ) : (
+                        <ImageCard
+                          detailUrl={feed.link}
+                          src={feed.StoryImage}
+                          alt={feed.title}
+                          category={feed.categoryDisplay}
+                          imgTitle={feed.title}
+                          commentscount={feed.commentscount}
+                          lastupdated={feed.lastupdated}
+                          audio={feed.audio}
+                          feedId={feed.id}
+                        />
+                      )}
                       {/* {feed.audio == "1" ? (
                 <Audio src={feed.StoryImage} detailUrl={feed.link} />
               ) : (
@@ -79,18 +99,6 @@ export default function FeedList({ mainId }) {
                   audio={feed.audio}
                 />
               )} */}
-
-                      <ImageCard
-                        detailUrl={feed.link}
-                        src={feed.StoryImage}
-                        alt={feed.title}
-                        category={feed.categoryDisplay}
-                        imgTitle={feed.title}
-                        commentscount={feed.commentscount}
-                        lastupdated={feed.lastupdated}
-                        audio={feed.audio}
-                        feedId={feed.id}
-                      />
                     </Item>
                   </Grid>
                 </Link>

@@ -30,11 +30,14 @@ a {
 
 /* Slick Css */
 .slick-next {
-  right: 10px;
+  right: 15px;
+  position: absolute;
+  top: -4rem;
 }
 .slick-prev {
   left: 10px;
   z-index: 2;
+  display: inline;
 }
 .slick-next:before,
 .slick-prev:before {

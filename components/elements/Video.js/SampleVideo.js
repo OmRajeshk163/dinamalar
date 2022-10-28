@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 const ReactHlsPlayer = dynamic(() => import("react-hls-player"), {
   ssr: false,
 });
-const SampleVideo = ({ src }) => {
+const VideoPlayer = ({ src }) => {
   return (
     <div>
       <ReactHlsPlayer
@@ -19,4 +19,4 @@ const SampleVideo = ({ src }) => {
 };
 //https://www.youtube.com/watch?v=ysz5S6PUM-U
 
-export default SampleVideo;
+export default VideoPlayer;
