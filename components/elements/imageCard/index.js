@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import ImageListItem from "@mui/material/ImageListItem";
 import { Box, Divider, Typography } from "@mui/material";
 import styles from "./imageCard.module.css";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CommentIcon from "@mui/icons-material/Comment";
-import Link from "next/link";
-import Audio from "../audio";
 import MicOffIcon from "@mui/icons-material/MicOff";
-import axios from "axios";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 
 const ImageCard = (props) => {
   const {
@@ -19,24 +17,17 @@ const ImageCard = (props) => {
     commentscount = "",
     lastupdated = "",
     audio,
+    videogallery,
     detailUrl,
     feedId,
+    isDetailed = false,
   } = props;
-  const [mp3src, setmp3Src] = useState("");
-  const myLoader = () => src;
-  // const audioOnclickHandler = async () => {
-  //   const detailedFeed = await axios.get(detailUrl).data;
-  //   const getmp3url = detailedFeed.data.item.description.filter(
-  //     (desc) => desc.audioLink != ""
-  //   )[0].audioLink;
-  //   const feedmp3 = await axios.get(getmp3url);
-  // };
 
   const audioClick = () => {
     console.log();
   };
   return (
-    <Box className={styles.imgContainer}>
+    <Box className={isDetailed ? "" : styles.imgContainer}>
       <ImageListItem>
         <div className={styles.imageWrap}>
           <Image
@@ -49,25 +40,21 @@ const ImageCard = (props) => {
             className={styles.image}
           />
         </div>
-        <Typography align="left" variant="h6" className={styles.imgTitle}>
+        <Typography
+          align="left"
+          variant="h6"
+          className={isDetailed ? "" : styles.imgTitle}
+        >
           {imgTitle}
         </Typography>
-        {/* <audio id="audio">
-          <source
-            // src="http://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg"
-            src={mp3src}
-          />
-          Your browser does not support the <code>audio</code> element.
-        </audio> */}
+
+        {videogallery === "1" && (
+          <div className={styles.videoIconWrap}>
+            <PlayCircleOutlineIcon className={styles.videoIcon} />
+          </div>
+        )}
         {audio === "1" && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: "30%",
-              right: "5%",
-              zIndex: "999",
-            }}
-          >
+          <div className={styles.audioIconWrap}>
             <button className={styles.playerButton} onClick={audioClick}>
               <MicOffIcon />
             </button>

@@ -5,17 +5,12 @@ import Image from "next/image";
 import { Box, Typography, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 
 const Arrow = ({ className, onClick, type }) => {
   return (
-    <div
-      className={className}
-      onClick={onClick}
-      style={{ color: "black", fontSize: "1rem" }}
-    >
-      {type === "prev" ? "\u21D0" : "\u21D2"}
+    <div className={styles.arrowWrap} onClick={onClick}>
+      {/* {type === "prev" ? "\u21D0" : "\u21D2"} */}
+      <ArrowForwardIcon />
     </div>
   );
 };
@@ -24,7 +19,7 @@ const mySliderImgLoader = (src) => src;
 const SliderItem = ({ src = "", alt = " ", title = "" }) => {
   return (
     <div className={styles.sliderItemWrap}>
-      <Image
+      {/* <Image
         // loader={() => mySliderImgLoader(src)}
         alt={alt}
         src={src}
@@ -32,11 +27,12 @@ const SliderItem = ({ src = "", alt = " ", title = "" }) => {
         objectFit="contain"
         unoptimized={true}
         className={styles.sliderItemImage}
-      />
-      <div style={{ position: "absolute", bottom: 10, left: "50%" }}>
+      /> */}
+      <img alt={alt} src={src} className={styles.sliderItemImage} />
+      <div style={{ position: "absolute", bottom: 10, left: "40%" }}>
         <Typography
-          variant="h6"
-          sx={{ fontSize: "1.2rem", mb: 2, color: "#fff", fontWeight: 600 }}
+          variant="body2"
+          sx={{ mb: 2, color: "#fff", fontWeight: 600 }}
         >
           {title}
         </Typography>
@@ -49,6 +45,7 @@ const Carousel = ({
   customPrevArrow,
   customNextArrow,
   slidesToShow,
+  slidesToScroll,
   speed,
   dots,
   adaptiveHeight,
@@ -57,15 +54,16 @@ const Carousel = ({
 }) => {
   const settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     speed,
     slidesToShow: slidesToShow,
-    slidesToScroll: slidesToShow,
-    prevArrow: customPrevArrow,
-    nextArrow: customNextArrow,
+    slidesToScroll: slidesToScroll,
+    // prevArrow: customPrevArrow,
+    // nextArrow: customNextArrow,
     adaptiveHeight: false,
     responsive,
     arrow: true,
+    nextArrow: photoitems.length > 0 && <Arrow type="next" />,
   };
   const Item = styled(Paper)(({ theme }) => ({
     // backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -90,7 +88,7 @@ const Carousel = ({
           variant="h4"
           sx={{ mt: 2, mb: 1, color: "var(--primary)", fontWeight: 600 }}
         >
-          Photo Gallery
+          Photo Album
         </Typography>
         <ArrowForwardIcon
           sx={{ fontSize: "2.5rem", color: "#fff", fontWeight: 600 }}
@@ -104,8 +102,8 @@ const Carousel = ({
                 <SliderItem
                   key={index}
                   // src="https://images.unsplash.com/photo-1665331626213-8eb051094b09?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDd8Ym84alFLVGFFMFl8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
-                  src={photo.image}
-                  title={photo.text}
+                  src={photo.image ?? photo.thumbnailUrl}
+                  title={photo.text ?? photo.title}
                 />
               ))}
             </Slider>
@@ -137,7 +135,7 @@ Carousel.propTypes = {
 
 Carousel.defaultProps = {
   // customPrevArrow: <Arrow type="prev" />,
-  // customNextArrow: <Arrow type="next" />,
+  customNextArrow: <Arrow type="next" />,
   slidesToShow: 1,
   speed: 500,
   adaptiveHeight: false,

@@ -13,7 +13,6 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
 import Drawer from "./Drawer";
-import Link from "next/link";
 import DinamalarLogo from "./Logo";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];

@@ -1,40 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ImageCard from "../../elements/imageCard";
-import { Box, Divider, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Divider, Grid, Typography } from "@mui/material";
 import styles from "./categoryDetails.module.css";
-import CategoryAudio from "./CategoryAudio";
-import Video from "../../elements/Video.js";
-import Carousel from "../../elements/Carousel";
-import Ad from "../../elements/ad";
-import CategoryDescription from "./CategoryDescription";
-import { categoryDescriptions } from "./helper";
-import CategoryLinks from "./CategoryLinks";
+
 import SocialShare from "./SocialShare";
-import CategoryComments from "./CategoryComments";
 import RelatedNews from "./RelatedNews";
 import PostComment from "./PostComment";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "next/link";
-import { NewsFeeds } from "../home/helper";
-import SampleVideo from "../../elements/Video.js/SampleVideo";
+
 import NotFoundImg from "../../../assets/Images/404.jpg";
+import DescriptionList from "./DescriptionList";
+import CommentList from "./CommentList";
 
 const CategoryHearder = (props) => {
   const { selectedNews } = props;
-  const description = selectedNews?.description ?? [];
-  const categoryDisplay = selectedNews?.categoryDisplay ?? ``;
-  const StoryImage = selectedNews?.StoryImage ?? NotFoundImg.src;
-  const title = selectedNews?.title ?? ``;
-  const commentscount = selectedNews?.commentscount ?? ``;
-  const lastupdated = selectedNews?.lastupdated ?? ``;
-  const relatedLinks = selectedNews?.relatedLinks ?? ``;
-  const categoryname = selectedNews?.categoryname;
-  const guid = selectedNews?.guid;
-  const comments = selectedNews?.comments;
-  const socialLinks = selectedNews?.socialLinks;
+  const {
+    guid,
+    title,
+    commentscount,
+    lastupdated,
+    description,
+    categoryDisplay,
+    StoryImage,
+    relatedLinks,
+    categoryname,
+    comments,
+    socialLinks,
+  } = selectedNews;
+  const MediaContainer = ({ children }) => (
+    <div className={styles.categoryMediaContainer}>{children}</div>
+  );
+
   return (
-    <Box sx={{ flexGrow: 1, width: "100%", p: 1, mt: 5 }}>
+    <Box sx={{ flexGrow: 1, width: "100%", p: 1 }}>
       <Grid container spacing={2}>
         <Grid item lg={4} md={6} sm={6} />
         <Grid item xs={12} md={4} lg={5}>
@@ -59,96 +59,35 @@ const CategoryHearder = (props) => {
               {categoryDisplay}
             </Typography>
           </Box>
-          <ImageCard
-            src={StoryImage}
-            alt={title}
-            category={categoryDisplay}
-            imgTitle={title}
-            commentscount={commentscount}
-            lastupdated={lastupdated}
-          />
+          {StoryImage && (
+            <ImageCard
+              src={StoryImage}
+              alt={title}
+              category={categoryDisplay}
+              imgTitle={title}
+              commentscount={commentscount}
+              lastupdated={lastupdated}
+              isDetailed={true}
+            />
+          )}
+
           <Divider />
           <div className={styles.categoryDescWrap}>
-            {description?.length > 0 &&
-              description.map((desc, index) => {
-                if (desc.content != "") {
-                  return (
-                    <CategoryDescription desc={desc.content} key={index} />
-                  );
-                }
-                if (desc.audioLink != "") {
-                  return <CategoryAudio src={desc.audioLink} key={index} />;
-                }
-                if (desc.videoLink != "") {
-                  return (
-                    // <Video
-                    //   src={desc.videoLink}
-                    //   category="World"
-                    //   videoTitle=""
-                    // />
-                    <SampleVideo src={desc.videoLink} key={index} />
-                  );
-                }
-                if (desc.photoGallery.length > 0) {
-                  return (
-                    <div className={styles.categoryMediaContainer} key={index}>
-                      <Carousel
-                        slidesToShow={1}
-                        photoitems={desc.photoGallery}
-                      />
-                    </div>
-                  );
-                }
-                if (desc.adLink != "") {
-                  return (
-                    <div className={styles.categoryMediaContainer} key={index}>
-                      <Ad />
-                    </div>
-                  );
-                }
-              })}
-
-            <Divider />
+            <DescriptionList description={description} />
             {/* <div className={styles.categoryMediaContainer}>
               <CategoryLinks />
             </div>
             <Divider /> */}
-
-            <div className={styles.categoryMediaContainer}>
-              <RelatedNews relatedLinks={relatedLinks} guid={guid} />
-              <Divider />
-            </div>
-
-            <div className={styles.categoryMediaContainer}>
+            <MediaContainer>
+              <RelatedNews relatedLinks={relatedLinks} />
+            </MediaContainer>
+            <MediaContainer>
               <PostComment categoryname={categoryname} guid={guid} />
-            </div>
-            <div>
-              <Typography variant="h5" sx={{ m: 2 }}>
-                Comments
-              </Typography>
-              {comments?.length > 0 ? (
-                comments.map((comment, index) => {
-                  if (index % 2 === 0) {
-                    return <CategoryComments key={index} {...comment} />;
-                  }
-                  return (
-                    <CategoryComments
-                      key={index}
-                      order="row-reverse"
-                      {...comment}
-                    />
-                  );
-                })
-              ) : (
-                <Typography sx={{ textAlign: "center", m: 2 }}>
-                  No Comments
-                </Typography>
-              )}
-              <Divider />
-            </div>
-            <div className={styles.categoryMediaContainer}>
+            </MediaContainer>
+            <CommentList comments={comments} />
+            <MediaContainer>
               <SocialShare socialLinks={socialLinks} />
-            </div>
+            </MediaContainer>
           </div>
         </Grid>
       </Grid>
@@ -157,5 +96,19 @@ const CategoryHearder = (props) => {
 };
 
 CategoryHearder.propTypes = {};
-
+CategoryHearder.defaultProps = {
+  selectedNews: {
+    description: [],
+    StoryImage: "",
+    categoryDisplay: "",
+    title: "",
+    commentscount: 0,
+    lastupdated: "",
+    relatedLinks: [],
+    categoryname: "",
+    guid: 0,
+    comments: [],
+    socialLinks: [{ facebook: "", instagram: "", twitter: "", youtube: "" }],
+  },
+};
 export default CategoryHearder;
