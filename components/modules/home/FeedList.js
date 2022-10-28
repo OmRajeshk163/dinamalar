@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function FeedList() {
+export default function FeedList({ mainId }) {
   const [newsFeeds, setNewsFeeds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,7 +38,7 @@ export default function FeedList() {
     const getGetFeedList = async () => {
       try {
         setIsLoading(true);
-        const newsFeedsAPi = "/api/newsFeeds";
+        const newsFeedsAPi = `/api/newsFeeds?mainId=${mainId ?? 0}`;
         const newsFeedRes = await axios.get(newsFeedsAPi);
         setNewsFeeds(newsFeedRes.data.item);
         setIsLoading(false);
@@ -49,7 +49,7 @@ export default function FeedList() {
       }
     };
     getGetFeedList();
-  }, []);
+  }, [mainId]);
 
   console.log("stateres", newsFeeds);
   return (

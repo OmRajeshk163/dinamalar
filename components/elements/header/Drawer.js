@@ -34,7 +34,7 @@ export default function CustumDrawer(props) {
     };
     getTabList();
   }, []);
-
+  // console.log("taaabstabstabs", tabs);
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -59,11 +59,13 @@ export default function CustumDrawer(props) {
       <List>
         {tabs.length > 0 &&
           tabs?.map((tab, index) => (
-            <ListItem key={tab.name}>
-              <ListItemButton>
-                <ListItemText primary={tab.name} />
-              </ListItemButton>
-            </ListItem>
+            <Link key={tab.name} href={`/${tab.link.split("=")[1] ?? ""}`}>
+              <ListItem>
+                <ListItemButton>
+                  <ListItemText primary={tab.name} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
       </List>
     </Box>
