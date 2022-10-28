@@ -57,14 +57,15 @@ const Carousel = ({
     infinite: true,
     speed,
     slidesToShow: slidesToShow,
-    slidesToScroll: slidesToScroll,
+    slidesToScroll: slidesToScroll ?? 1,
     // prevArrow: customPrevArrow,
     // nextArrow: customNextArrow,
     adaptiveHeight: false,
     responsive,
     arrow: true,
-    nextArrow: photoitems.length > 0 && <Arrow type="next" />,
+    nextArrow: photoitems.length > 1 && <Arrow type="next" />,
   };
+  console.log("photoitems.length", photoitems);
   const Item = styled(Paper)(({ theme }) => ({
     // backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     // backgroundColor: "var(--primary)",

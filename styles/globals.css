@@ -37,7 +37,7 @@ a {
 .slick-prev {
   left: 10px;
   z-index: 2;
-  display: inline;
+  display: none !important;
 }
 .slick-next:before,
 .slick-prev:before {
