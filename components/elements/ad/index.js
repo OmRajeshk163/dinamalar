@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import styles from "./ad.module.css";
 
 const Ad = (props) => {
-  useEffect(() => {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }, []);
+//   useEffect(() => {
+//     (adsbygoogle = window.adsbygoogle || []).push({});
+//   }, []);
   return (
     // <div style={{ height: "auto" }}>
     //   <ins
