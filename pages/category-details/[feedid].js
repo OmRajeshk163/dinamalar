@@ -24,6 +24,7 @@ const CategoryDetails = () => {
           params,
           responseType: "json",
           "content-type": "text/html; Charset=utf-8",
+          timeout: 15000,
         })
         .then((response) => {
           setFeedDetail(response.data);

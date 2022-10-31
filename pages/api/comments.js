@@ -7,13 +7,12 @@ export default async function handler(req, res) {
     yourname = "",
     yourmailid = "",
     Message = "",
-  } = req.body;
+  } = req.body.params;
 
   if (req.method == "POST") {
-    if (newsid) {
+    if (newsid.length > 0) {
       const params = `?newsid=${newsid}&cat=${cat}&yourname=${yourname}&yourmailid=${yourmailid}&Message=${Message}`;
       const postCommentUrl = `https://rss.dinamalar.com/internal/post-comment.asp${params}`;
-
       const response = await axios.post(postCommentUrl, {
         headers: {
           "Content-Type": "application/json",

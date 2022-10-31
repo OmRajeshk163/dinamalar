@@ -40,7 +40,7 @@ export default function FeedList({ mainId }) {
       try {
         setIsLoading(true);
         const newsFeedsAPi = `/api/newsFeeds?mainId=${mainId ?? 0}`;
-        const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 10000 });
+        const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 15000 });
         setNewsFeeds(newsFeedRes.data.item);
         setIsLoading(false);
       } catch (err) {

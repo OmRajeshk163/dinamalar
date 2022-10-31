@@ -54,7 +54,10 @@ const PostComment = ({ categoryname, guid }) => {
         console.log("submitrequest", params);
         try {
           const commentPostApi = `/api/comments`;
-          const postRes = await axios.post(commentPostApi, params);
+          const postRes = await axios.post(commentPostApi, {
+            params,
+            timeout: 15000,
+          });
           if (
             postRes.data?.item[0]?.success != "0" &&
             postRes.data?.item[0]?.displaymessage

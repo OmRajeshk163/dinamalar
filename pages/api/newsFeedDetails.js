@@ -3,7 +3,6 @@ import JSON5 from "json5";
 
 export default async function handler(req, res) {
   const { feedId = 0 } = req.query;
-  console.log("resfgsfg", feedId);
 
   if (req.method === "GET") {
     if (feedId) {
