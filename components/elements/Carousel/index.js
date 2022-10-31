@@ -38,13 +38,7 @@ const SliderItem = ({ src = "", alt = " ", title = "" }) => {
       /> */}
       <img alt={alt} src={src} className={styles.sliderItemImage} />
       <div className={styles.imageWrap}>
-        <Typography
-          variant="body2"
-          sx={{ mb: 2, color: "#fff" }}
-          className={styles.imageTitle}
-        >
-          {title}
-        </Typography>
+        <p className={styles.imageTitle}>{title}</p>
       </div>
     </div>
   );

@@ -52,6 +52,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  color: #fff;
 }
 
 @media screen and (min-width: 864px) {
