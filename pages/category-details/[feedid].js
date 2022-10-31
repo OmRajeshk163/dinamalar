@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
-import CategoryHearder from "../../components/modules/categoryDetails/CategoryHearder";
+import CategoryContainer from "../../components/modules/categoryDetails/CategoryContainer";
 import axios from "axios";
 import Head from "next/head";
 import { Typography } from "@mui/material";
@@ -61,7 +61,7 @@ const CategoryDetails = () => {
       </Head>
       <main className={styles.main}>
         {!isLoading && isValidItem() && (
-          <CategoryHearder selectedNews={feedDetail.item} />
+          <CategoryContainer selectedNews={feedDetail.item} />
         )}
         {isLoading && <Loading />}
         {!isLoading && !isValidItem() && (

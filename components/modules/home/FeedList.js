@@ -51,10 +51,9 @@ export default function FeedList({ mainId }) {
     };
     getGetFeedList();
   }, [mainId]);
-
   console.log("newsFeeds", newsFeeds);
   return (
-    <Box sx={{ flexGrow: 1, width: "100%", mt: 5, cursor: "pointer" }}>
+    <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
       <Grid container spacing={2}>
         {isLoading ? (
           <Grid item xs={12} md={12} lg={12}>
@@ -86,19 +85,6 @@ export default function FeedList({ mainId }) {
                           feedId={feed.id}
                         />
                       )}
-                      {/* {feed.audio == "1" ? (
-                <Audio src={feed.StoryImage} detailUrl={feed.link} />
-              ) : (
-                <ImageCard
-                  src={feed.StoryImage}
-                  alt={feed.title}
-                  category={feed.categoryDisplay}
-                  imgTitle={feed.title}
-                  commentscount={feed.commentscount}
-                  lastupdated={feed.lastupdated}
-                  audio={feed.audio}
-                />
-              )} */}
                     </Item>
                   </Grid>
                 </Link>
@@ -112,20 +98,6 @@ export default function FeedList({ mainId }) {
             )}
           </>
         )}
-
-        {/* <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <Video
-              category="World"
-              videoTitle="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."
-            />
-          </Item>
-        </Grid> */}
-        {/* <Grid item xs={12} md={4} lg={4}>
-          <Item>
-            <Audio />
-          </Item>
-        </Grid> */}
       </Grid>
     </Box>
   );

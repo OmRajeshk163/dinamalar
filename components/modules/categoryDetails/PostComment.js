@@ -7,6 +7,7 @@ import axios from "axios";
 import styles from "./categoryDetails.module.css";
 
 const PostComment = ({ categoryname, guid }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [comment, setComment] = useState({
     yourname: "",
     yourmailid: "",
@@ -45,6 +46,7 @@ const PostComment = ({ categoryname, guid }) => {
         setError((prev) => ({ ...prev, isMailidInvalid: false }));
       }
       if (comment.yourname && comment.yourmailid) {
+        setIsLoading(true);
         setError((prev) => ({
           ...prev,
           isNameInvalid: false,
@@ -63,6 +65,7 @@ const PostComment = ({ categoryname, guid }) => {
             postRes.data?.item[0]?.displaymessage
           ) {
             alert(postRes.data.item[0].displaymessage);
+            setIsLoading(false);
             setComment({ yourname: "", yourmailid: "", Message: "" });
           } else {
             alert(postRes.data.item[0].displaymessage);
@@ -72,6 +75,7 @@ const PostComment = ({ categoryname, guid }) => {
           console.error("postCommenterror", err);
           alert("Comment Submission Failed, Please try Later");
           setComment({ yourname: "", yourmailid: "", Message: "" });
+          setIsLoading(false);
         }
       }
     }
@@ -142,7 +146,7 @@ const PostComment = ({ categoryname, guid }) => {
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <Button variant="contained" sx={{ textAlign: "right" }} type="submit">
-            Post
+            {isLoading ? "Posting..." : "Post"}
           </Button>
         </div>
       </form>

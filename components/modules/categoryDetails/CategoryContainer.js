@@ -14,7 +14,7 @@ import NotFoundImg from "../../../assets/Images/404.jpg";
 import DescriptionList from "./DescriptionList";
 import CommentList from "./CommentList";
 
-const CategoryHearder = (props) => {
+const CategoryContainer = (props) => {
   const { selectedNews } = props;
   const {
     guid,
@@ -48,9 +48,7 @@ const CategoryHearder = (props) => {
             }}
           >
             <Link href="/">
-              <ArrowBackIcon
-                sx={{ fontSize: "2.5rem", fontWeight: 600, cursor: "pointer" }}
-              />
+              <ArrowBackIcon sx={{ fontSize: "2.5rem", fontWeight: 600 }} />
             </Link>
             <Typography
               variant="h4"
@@ -95,8 +93,8 @@ const CategoryHearder = (props) => {
   );
 };
 
-CategoryHearder.propTypes = {};
-CategoryHearder.defaultProps = {
+CategoryContainer.propTypes = {};
+CategoryContainer.defaultProps = {
   selectedNews: {
     description: [],
     StoryImage: "",
@@ -111,4 +109,4 @@ CategoryHearder.defaultProps = {
     socialLinks: [{ facebook: "", instagram: "", twitter: "", youtube: "" }],
   },
 };
-export default CategoryHearder;
+export default CategoryContainer;
