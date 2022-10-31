@@ -5,16 +5,24 @@ import Image from "next/image";
 import { Box, Typography, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Arrow = ({ className, onClick, type }) => {
   return (
-    <div className={styles.arrowWrap} onClick={onClick}>
-      {/* {type === "prev" ? "\u21D0" : "\u21D2"} */}
-      <ArrowForwardIcon />
-    </div>
+    <>
+      {type === "prev" ? (
+        <div className={styles.leftArrowWrap} onClick={onClick}>
+          {/* {type === "prev" ? "\u21D0" : "\u21D2"} */}
+          <ArrowBackIcon />
+        </div>
+      ) : (
+        <div className={styles.rightArrowWrap} onClick={onClick}>
+          <ArrowForwardIcon />
+        </div>
+      )}
+    </>
   );
 };
-const mySliderImgLoader = (src) => src;
 
 const SliderItem = ({ src = "", alt = " ", title = "" }) => {
   return (
@@ -29,10 +37,11 @@ const SliderItem = ({ src = "", alt = " ", title = "" }) => {
         className={styles.sliderItemImage}
       /> */}
       <img alt={alt} src={src} className={styles.sliderItemImage} />
-      <div style={{ position: "absolute", bottom: 10, left: "40%" }}>
+      <div className={styles.imageWrap}>
         <Typography
           variant="body2"
-          sx={{ mb: 2, color: "#fff", fontWeight: 600 }}
+          sx={{ mb: 2, color: "#fff" }}
+          className={styles.imageTitle}
         >
           {title}
         </Typography>
@@ -63,6 +72,7 @@ const Carousel = ({
     adaptiveHeight: false,
     responsive,
     arrow: true,
+    prevArrow: <Arrow type="prev" />,
     nextArrow: photoitems.length > 1 && <Arrow type="next" />,
   };
   console.log("photoitems.length", photoitems);

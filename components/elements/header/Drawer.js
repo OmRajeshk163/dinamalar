@@ -9,10 +9,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Link from "next/link";
 import DinamalarLogo from "./Logo";
 import axios from "axios";
+import { getTabList } from "./helper";
 
 export default function CustumDrawer(props) {
-  const { drawerOpen, setDrawerOpen } = props;
-  const [tabs, setTabs] = useState([]);
+  const { drawerOpen, setDrawerOpen, tabs } = props;
+  // const [tabs, setTabs] = useState([]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -21,20 +22,13 @@ export default function CustumDrawer(props) {
     ) {
       return;
     }
-
     // setState({ ...state, [anchor]: open });
     setDrawerOpen(open);
   };
 
-  useEffect(() => {
-    const getTabList = async () => {
-      const tabsAPi = "/api/tabs";
-      const tabList = await axios.get(tabsAPi);
-      setTabs(tabList.data);
-    };
-    getTabList();
-  }, []);
-  // console.log("taaabstabstabs", tabs);
+  // useEffect(() => {
+  //   getTabList().then((res) => setTabs(res));
+  // }, []);
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}

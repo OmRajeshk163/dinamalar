@@ -14,6 +14,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PropTypes from "prop-types";
 import Drawer from "./Drawer";
 import DinamalarLogo from "./Logo";
+import {
+  Link,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import { getTabList } from "./helper";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const pages = ["Sports", "Space", "Technology"];
@@ -22,6 +30,12 @@ const Header = (props) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const [tabs, setTabs] = useState([]);
+
+  useEffect(() => {
+    getTabList().then((res) => setTabs(res));
+  }, []);
+
   const handleOpenNavMenu = (event) => {
     setDrawerOpen(true);
     // setAnchorElNav(event.currentTarget);
@@ -79,7 +93,6 @@ const Header = (props) => {
                 ))} */}
               </Menu>
             </Box>
-            <DinamalarLogo />
             <Box
               sx={{
                 flexGrow: 1,
@@ -88,15 +101,35 @@ const Header = (props) => {
                 mr: 2,
               }}
             >
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "white", display: "block" }}
-                >
-                  {page}
-                </Button>
-              ))}
+              <DinamalarLogo />
+            </Box>
+
+            <Box
+              sx={{
+                flexGrow: 2,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+                mr: 2,
+              }}
+            >
+              {/* <List> */}
+              {tabs.length > 0 &&
+                tabs?.map((tab, index) => (
+                  <Link
+                    key={tab.name}
+                    href={`/${tab.link.split("=")[1] ?? ""}`}
+                  >
+                    <ListItem>
+                      <ListItemButton>
+                        <ListItemText
+                          primary={tab.name}
+                          sx={{ color: "white", textDecoration: "none" }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  </Link>
+                ))}
+              {/* </List> */}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
@@ -133,7 +166,11 @@ const Header = (props) => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Drawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+      <Drawer
+        drawerOpen={drawerOpen}
+        setDrawerOpen={setDrawerOpen}
+        tabs={tabs}
+      />
     </>
   );
 };
