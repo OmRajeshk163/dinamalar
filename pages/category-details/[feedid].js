@@ -6,37 +6,38 @@ import axios from "axios";
 import Head from "next/head";
 import { Typography } from "@mui/material";
 import Loading from "../../components/elements/loading";
+import { baseUrl } from "../../components/modules/constants";
 
-const CategoryDetails = () => {
+const CategoryDetails = ({ feedDetail }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const [feedDetail, setFeedDetail] = useState({});
+  // const [feedDetail, setFeedDetail] = useState({});
 
-  useEffect(() => {
-    const feedId = router.query.feedid;
+  // useEffect(() => {
+  //   const feedId = router.query.feedid;
 
-    if (feedId) {
-      setIsLoading(true);
-      const newsFeedsDetailsAPi = `/api/newsFeedDetails`;
-      const params = { feedId: feedId };
-      axios
-        .get(newsFeedsDetailsAPi, {
-          params,
-          responseType: "json",
-          "content-type": "text/html; Charset=utf-8",
-          timeout: 15000,
-        })
-        .then((response) => {
-          setFeedDetail(response.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.error("FeedDetailError", err);
-          setFeedDetail({ item: {} });
-          setIsLoading(false);
-        });
-    }
-  }, [router.query.feedid]);
+  //   if (feedId) {
+  //     setIsLoading(true);
+  //     const newsFeedsDetailsAPi = `/api/newsFeedDetails`;
+  //     const params = { feedId: feedId };
+  //     axios
+  //       .get(newsFeedsDetailsAPi, {
+  //         params,
+  //         responseType: "json",
+  //         "content-type": "text/html; Charset=utf-8",
+  //         timeout: 15000,
+  //       })
+  //       .then((response) => {
+  //         setFeedDetail(response.data);
+  //         setIsLoading(false);
+  //       })
+  //       .catch((err) => {
+  //         console.error("FeedDetailError", err);
+  //         setFeedDetail({ item: {} });
+  //         setIsLoading(false);
+  //       });
+  //   }
+  // }, [router.query.feedid]);
 
   const isValidItem = () => {
     const item = feedDetail?.item;
@@ -75,3 +76,27 @@ const CategoryDetails = () => {
 };
 
 export default CategoryDetails;
+
+export async function getServerSideProps(context) {
+  const newsFeedsDetailsAPi = `${baseUrl}/api/newsFeedDetails`;
+  const params = { feedId: context.query.feedid };
+  let feedDetails = {};
+  try {
+    const newsFeedsDetailsRes = await axios.get(newsFeedsDetailsAPi, {
+      params,
+      responseType: "json",
+      "content-type": "text/html; Charset=utf-8",
+      timeout: 15000,
+    });
+    feedDetails = JSON.parse(JSON.stringify(newsFeedsDetailsRes.data));
+  } catch (error) {
+    console.error("feedDetailsError", error);
+    feedDetails = { item: {} };
+  }
+
+  return {
+    props: {
+      feedDetail: feedDetails,
+    },
+  };
+}

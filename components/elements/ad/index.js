@@ -17,7 +17,7 @@ const Ad = (props) => {
     //     data-ad-slot="6289511602"
     //   ></ins>
     // </div>
-    <a href="/" target="_blank">
+    <a href="/0" target="_blank">
       <div className={styles.adContainer}>Google Ad</div>
     </a>
   );

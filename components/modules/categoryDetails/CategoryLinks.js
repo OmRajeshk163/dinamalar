@@ -11,25 +11,25 @@ const CategoryLinks = (props) => {
       </Typography>
       <ul style={{ padding: 2 }}>
         <li className={styles.categoryLinkWrap}>
-          <Link href="/" rel="noopener" target="_blank">
+          <Link href="/0" rel="noopener" target="_blank">
             What is Lorem Ipsum Neque sam quisquam est qui dolorem ipsum?
           </Link>
         </li>
         <li className={styles.categoryLinkWrap}>
-          <Link href="/" rel="noopener" target="_blank">
+          <Link href="/0" rel="noopener" target="_blank">
             quia dolor sit amet, consectetur, adipisci velit... Where does it
             come from?
           </Link>
-          <a href="/" target="_blank" className={styles.categoryLink}></a>
+          <a href="/0" target="_blank" className={styles.categoryLink}></a>
         </li>
         <li className={styles.categoryLinkWrap}>
-          <Link href="/" rel="noopener" target="_blank">
+          <Link href="/0" rel="noopener" target="_blank">
             Where can I get some? There is no one who loves pain itself, who
             seeks
           </Link>
         </li>
         <li className={styles.categoryLinkWrap}>
-          <Link href="/" rel="noopener" target="_blank">
+          <Link href="/0" rel="noopener" target="_blank">
             There are many variations of passages of Lorem Ipsum available, but
             the majority have suffered alteration in some form, by injected
             humour,

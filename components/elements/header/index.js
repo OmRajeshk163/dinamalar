@@ -57,7 +57,7 @@ const Header = (props) => {
       <AppBar position="fixed" sx={{ background: "var(--primary)", p: 1 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -96,7 +96,7 @@ const Header = (props) => {
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: "none", md: "flex" },
+                display: { md: "flex" },
                 justifyContent: "flex-end",
                 mr: 2,
               }}
@@ -117,7 +117,7 @@ const Header = (props) => {
                 tabs?.map((tab, index) => (
                   <Link
                     key={tab.name}
-                    href={`/${tab.link.split("=")[1] ?? ""}`}
+                    href={`/${tab.link.split("=")[1] ?? "0"}`}
                   >
                     <ListItem>
                       <ListItemButton>
