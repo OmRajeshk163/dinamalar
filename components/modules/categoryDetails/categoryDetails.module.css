@@ -40,6 +40,8 @@
 }
 .commentText {
   flex-basis: 85%;
+  width: 90%;
+  word-wrap: break-word;
 }
 
 .categoryRelatedNewsContainer {

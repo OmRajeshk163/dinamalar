@@ -47,7 +47,7 @@ const CategoryContainer = (props) => {
               alignItems: "flex-start",
             }}
           >
-            <Link href="/">
+            <Link href="/0">
               <ArrowBackIcon sx={{ fontSize: "2.5rem", fontWeight: 600 }} />
             </Link>
             <Typography

@@ -20,8 +20,8 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function FeedList({ mainId }) {
-  const [newsFeeds, setNewsFeeds] = useState([]);
+export default function FeedList({ newsFeeds }) {
+  // const [newsFeeds, setNewsFeeds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   function chunkSubstr(str, size) {
@@ -35,22 +35,22 @@ export default function FeedList({ mainId }) {
     return chunks;
   }
 
-  useEffect(() => {
-    const getGetFeedList = async () => {
-      try {
-        setIsLoading(true);
-        const newsFeedsAPi = `/api/newsFeeds?mainId=${mainId ?? 0}`;
-        const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 15000 });
-        setNewsFeeds(newsFeedRes.data.item);
-        setIsLoading(false);
-      } catch (err) {
-        console.error("NewsFeedList err", err);
-        setIsLoading(false);
-        setNewsFeeds([]);
-      }
-    };
-    getGetFeedList();
-  }, [mainId]);
+  // useEffect(() => {
+  //   const getGetFeedList = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const newsFeedsAPi = `/api/newsFeeds?mainId=${mainId ?? 0}`;
+  //       const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 15000 });
+  //       setNewsFeeds(newsFeedRes.data.item);
+  //       setIsLoading(false);
+  //     } catch (err) {
+  //       console.error("NewsFeedList err", err);
+  //       setIsLoading(false);
+  //       setNewsFeeds([]);
+  //     }
+  //   };
+  //   getGetFeedList();
+  // }, [mainId]);
   console.log("newsFeeds", newsFeeds);
   return (
     <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
@@ -61,7 +61,7 @@ export default function FeedList({ mainId }) {
           </Grid>
         ) : (
           <>
-            {newsFeeds.length > 0 ? (
+            {newsFeeds?.length > 0 ? (
               newsFeeds.map((feed, index) => (
                 <Link href={`/category-details/${feed.id}`} key={index}>
                   <Grid item xs={12} md={4} lg={4}>

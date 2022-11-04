@@ -5,7 +5,7 @@ import Link from "next/link";
 const DinamalarLogo = () => {
   const src = `https://rss.dinamalar.com/internal/dmrenglishlogonewinner.png`;
   return (
-    <Link href="/">
+    <Link href="/0">
       <div style={{ height: "2rem", width: "100%", position: "relative" }}>
         <Image
           unoptimized={true}

@@ -53,7 +53,7 @@ export default function CustumDrawer(props) {
       <List>
         {tabs.length > 0 &&
           tabs?.map((tab, index) => (
-            <Link key={tab.name} href={`/${tab.link.split("=")[1] ?? ""}`}>
+            <Link key={tab.name} href={`/${tab.link.split("=")[1] ?? "0"}`}>
               <ListItem>
                 <ListItemButton>
                   <ListItemText primary={tab.name} />
