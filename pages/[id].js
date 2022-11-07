@@ -33,10 +33,21 @@ export async function getServerSideProps(context) {
   let feedList = [];
   try {
     const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 15000 });
-    feedList = JSON.parse(JSON.stringify(newsFeedRes.data.item));
+    feedList = JSON.parse(
+      JSON.stringify({
+        status: newsFeedRes.status,
+        statusText: newsFeedRes.statusText,
+        data: newsFeedRes.data,
+      })
+    );
   } catch (error) {
-    console.error("feedlistError", err);
-    feedList = [];
+    feedList = JSON.parse(
+      JSON.stringify({
+        status: error.response.status,
+        statusText: error.response.statusText,
+        data: { item: [] },
+      })
+    );
   }
 
   return {

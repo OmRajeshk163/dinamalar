@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import ImageCard from "../../elements/imageCard";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import styles from "./categoryDetails.module.css";
+import IconButton from "@mui/material/IconButton";
+import { useRouter } from "next/router";
 
 import SocialShare from "./SocialShare";
 import RelatedNews from "./RelatedNews";
@@ -15,6 +17,8 @@ import DescriptionList from "./DescriptionList";
 import CommentList from "./CommentList";
 
 const CategoryContainer = (props) => {
+  const router = useRouter();
+
   const { selectedNews } = props;
   const {
     guid,
@@ -32,7 +36,6 @@ const CategoryContainer = (props) => {
   const MediaContainer = ({ children }) => (
     <div className={styles.categoryMediaContainer}>{children}</div>
   );
-
   return (
     <Box sx={{ flexGrow: 1, width: "100%", p: 1 }}>
       <Grid container spacing={2}>
@@ -44,15 +47,15 @@ const CategoryContainer = (props) => {
               justifyContent: "flex-start",
               gap: 1,
               p: 1,
-              alignItems: "flex-start",
+              alignItems: "center",
             }}
           >
-            <Link href="/0">
+            <IconButton onClick={() => router.back()}>
               <ArrowBackIcon sx={{ fontSize: "2.5rem", fontWeight: 600 }} />
-            </Link>
+            </IconButton>
             <Typography
               variant="h4"
-              sx={{ mb: 2, fontWeight: 600, color: "var(--primary)" }}
+              sx={{ fontWeight: 600, color: "var(--primary)" }}
             >
               {categoryDisplay}
             </Typography>

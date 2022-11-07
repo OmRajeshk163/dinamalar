@@ -22,6 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function FeedList({ newsFeeds }) {
   // const [newsFeeds, setNewsFeeds] = useState([]);
+  const { item } = newsFeeds.data;
   const [isLoading, setIsLoading] = useState(false);
 
   function chunkSubstr(str, size) {
@@ -35,23 +36,21 @@ export default function FeedList({ newsFeeds }) {
     return chunks;
   }
 
-  // useEffect(() => {
-  //   const getGetFeedList = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const newsFeedsAPi = `/api/newsFeeds?mainId=${mainId ?? 0}`;
-  //       const newsFeedRes = await axios.get(newsFeedsAPi, { timeout: 15000 });
-  //       setNewsFeeds(newsFeedRes.data.item);
-  //       setIsLoading(false);
-  //     } catch (err) {
-  //       console.error("NewsFeedList err", err);
-  //       setIsLoading(false);
-  //       setNewsFeeds([]);
-  //     }
-  //   };
-  //   getGetFeedList();
-  // }, [mainId]);
+  useEffect(() => {
+    setIsLoading(true);
+    try {
+      if (newsFeeds.status === 200) {
+        setIsLoading(false);
+      } else if (newsFeeds.status !== 200) {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error("FeedList Error", error);
+      setIsLoading(false);
+    }
+  }, [newsFeeds]);
   console.log("newsFeeds", newsFeeds);
+
   return (
     <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
       <Grid container spacing={2}>
@@ -61,8 +60,8 @@ export default function FeedList({ newsFeeds }) {
           </Grid>
         ) : (
           <>
-            {newsFeeds?.length > 0 ? (
-              newsFeeds.map((feed, index) => (
+            {item?.length > 0 ? (
+              item.map((feed, index) => (
                 <Link href={`/category-details/${feed.id}`} key={index}>
                   <Grid item xs={12} md={4} lg={4}>
                     <Item>
@@ -89,6 +88,18 @@ export default function FeedList({ newsFeeds }) {
                   </Grid>
                 </Link>
               ))
+            ) : newsFeeds.status !== 200 ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItem: "center",
+                  margin: "2rem",
+                  width: "100%",
+                }}
+              >
+                <Typography>Something Went Wrong</Typography>
+              </div>
             ) : (
               <Grid item xs={12} md={12} lg={12}>
                 <Typography sx={{ textAlign: "center", m: 2 }}>
