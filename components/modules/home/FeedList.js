@@ -23,7 +23,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function FeedList({ newsFeeds }) {
   // const [newsFeeds, setNewsFeeds] = useState([]);
   const { item } = newsFeeds.data;
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   function chunkSubstr(str, size) {
     const numChunks = Math.ceil(str.length / size);
