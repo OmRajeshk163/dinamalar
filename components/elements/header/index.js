@@ -22,6 +22,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { getTabList } from "./helper";
+import ProgressBar from "../progressbar";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 const pages = ["Sports", "Space", "Technology"];

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import styles from "../../styles/Home.module.css";
 import CategoryContainer from "../../components/modules/categoryDetails/CategoryContainer";
 import axios from "axios";
@@ -7,40 +6,36 @@ import Head from "next/head";
 import { Typography } from "@mui/material";
 import Loading from "../../components/elements/loading";
 import { baseUrl } from "../../components/modules/constants";
+import ProgressBar from "../../components/elements/progressbar";
 
-const CategoryDetails = ({ feedDetail }) => {
+const CategoryDetails = ({ feedDetails }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-  // const [feedDetail, setFeedDetail] = useState({});
 
-  // useEffect(() => {
-  //   const feedId = router.query.feedid;
-
-  //   if (feedId) {
-  //     setIsLoading(true);
-  //     const newsFeedsDetailsAPi = `/api/newsFeedDetails`;
-  //     const params = { feedId: feedId };
-  //     axios
-  //       .get(newsFeedsDetailsAPi, {
-  //         params,
-  //         responseType: "json",
-  //         "content-type": "text/html; Charset=utf-8",
-  //         timeout: 15000,
-  //       })
-  //       .then((response) => {
-  //         setFeedDetail(response.data);
-  //         setIsLoading(false);
-  //       })
-  //       .catch((err) => {
-  //         console.error("FeedDetailError", err);
-  //         setFeedDetail({ item: {} });
-  //         setIsLoading(false);
-  //       });
-  //   }
-  // }, [router.query.feedid]);
+  const [progress, setProgress] = useState({ value: 0, show: true });
+  useEffect(() => {
+    let interval = null;
+    if (feedDetails.status !== 200) {
+      if (progress.value >= 100) {
+        clearInterval(interval);
+      } else if (progress.value < 100) {
+        interval = setInterval(() => {
+          setProgress((prev) => ({
+            ...prev,
+            value: prev.value < 80 ? prev.value + 10 : 80,
+          }));
+        }, 1000);
+      }
+    } else if (feedDetails.status === 200) {
+      setProgress((prev) => ({ ...prev, value: 100 }));
+      setTimeout(() => setProgress((prev) => ({ ...prev, show: false })), 2000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [feedDetails, progress.value]);
 
   const isValidItem = () => {
-    const item = feedDetail?.item;
+    const item = feedDetails.data?.item;
     if (
       item &&
       Object.keys(item).length === 0 &&
@@ -53,7 +48,9 @@ const CategoryDetails = ({ feedDetail }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>{feedDetail?.title ?? "Dinamalar| Tamil daily newspaper"}</title>
+        <title>
+          {feedDetails.data?.title ?? "Dinamalar| Tamil daily newspaper"}
+        </title>
         <meta
           name="description"
           content="Dinamalar is an Indian Tamil daily newspaper."
@@ -61,8 +58,11 @@ const CategoryDetails = ({ feedDetail }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        {progress.show && (
+          <ProgressBar width={progress.value} height="0.45rem" />
+        )}
         {!isLoading && isValidItem() && (
-          <CategoryContainer selectedNews={feedDetail.item} />
+          <CategoryContainer selectedNews={feedDetails.data.item} />
         )}
         {isLoading && <Loading />}
         {!isLoading && !isValidItem() && (
@@ -88,15 +88,17 @@ export async function getServerSideProps(context) {
       "content-type": "text/html; Charset=utf-8",
       timeout: 15000,
     });
-    feedDetails = JSON.parse(JSON.stringify(newsFeedsDetailsRes.data));
+    feedDetails = {
+      data: JSON.parse(JSON.stringify(newsFeedsDetailsRes.data)),
+      status: newsFeedsDetailsRes.status,
+      statusText: newsFeedsDetailsRes.statusText,
+    };
   } catch (error) {
     console.error("feedDetailsError", error);
-    feedDetails = { item: {} };
+    feedDetails = { data: { item: {} }, status: 500 };
   }
 
   return {
-    props: {
-      feedDetail: feedDetails,
-    },
+    props: { feedDetails: feedDetails },
   };
 }
