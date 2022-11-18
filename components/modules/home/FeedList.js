@@ -54,61 +54,55 @@ export default function FeedList({ newsFeeds }) {
   return (
     <Box sx={{ flexGrow: 1, width: "100%", mt: 5 }}>
       <Grid container spacing={2}>
-        {isLoading ? (
-          <Grid item xs={12} md={12} lg={12}>
-            <Loading />
-          </Grid>
-        ) : (
-          <>
-            {item?.length > 0 ? (
-              item.map((feed, index) => (
-                <Link href={`/category-details/${feed.id}`} key={index}>
-                  <Grid item xs={12} md={4} lg={4}>
-                    <Item>
-                      {feed.photoitems?.length > 0 ? (
-                        <Carousel
-                          slidesToShow={1.2}
-                          slidesToScroll={1}
-                          photoitems={feed.photoitems}
-                        />
-                      ) : (
-                        <ImageCard
-                          detailUrl={feed.link}
-                          src={feed.StoryImage}
-                          alt={feed.title}
-                          category={feed.categoryDisplay}
-                          imgTitle={feed.title}
-                          commentscount={feed.commentscount}
-                          lastupdated={feed.lastupdated}
-                          audio={feed.audio}
-                          feedId={feed.id}
-                        />
-                      )}
-                    </Item>
-                  </Grid>
-                </Link>
-              ))
-            ) : newsFeeds.status !== 200 ? (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItem: "center",
-                  margin: "2rem",
-                  width: "100%",
-                }}
-              >
-                <Typography>Something Went Wrong</Typography>
-              </div>
-            ) : (
-              <Grid item xs={12} md={12} lg={12}>
-                <Typography sx={{ textAlign: "center", m: 2 }}>
-                  No News Found
-                </Typography>
-              </Grid>
-            )}
-          </>
-        )}
+        <>
+          {item?.length > 0 ? (
+            item.map((feed, index) => (
+              <Link href={`/category-details/${feed.id}`} key={index}>
+                <Grid item xs={12} md={4} lg={4}>
+                  <Item>
+                    {feed.photoitems?.length > 0 ? (
+                      <Carousel
+                        slidesToShow={1.2}
+                        slidesToScroll={1}
+                        photoitems={feed.photoitems}
+                      />
+                    ) : (
+                      <ImageCard
+                        detailUrl={feed.link}
+                        src={feed.StoryImage}
+                        alt={feed.title}
+                        category={feed.categoryDisplay}
+                        imgTitle={feed.title}
+                        commentscount={feed.commentscount}
+                        lastupdated={feed.lastupdated}
+                        audio={feed.audio}
+                        feedId={feed.id}
+                      />
+                    )}
+                  </Item>
+                </Grid>
+              </Link>
+            ))
+          ) : newsFeeds.status !== 200 ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItem: "center",
+                margin: "2rem",
+                width: "100%",
+              }}
+            >
+              <Typography>Something Went Wrong</Typography>
+            </div>
+          ) : (
+            <Grid item xs={12} md={12} lg={12}>
+              <Typography sx={{ textAlign: "center", m: 2 }}>
+                No News Found
+              </Typography>
+            </Grid>
+          )}
+        </>
       </Grid>
     </Box>
   );
